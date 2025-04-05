@@ -7,6 +7,7 @@ import { User } from "../models/user.model.js";
 export const verifyJWT = asyncHandler(async (req, res, next) => {
   try {
     // console.log("ACCESS_TOKEN_SECRET:", process.env.ACCESS_TOKEN_SECRET);
+    // console.log(req.cookies.accessToken);
 
     const token =
       req.cookies?.accessToken ||
