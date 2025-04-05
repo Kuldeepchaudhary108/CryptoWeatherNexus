@@ -11,17 +11,19 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import WeatherPage from "./components/weather/Weather.jsx";
-import Crypto from "./components/crypto/index.jsx";
-import App from "./App.jsx";
+import { CoinPage, CryptoHome } from "./components/crypto/index.js";
+import Home from "./App.jsx";
+import CryptoContext from "./context/CryptoContext.jsx";
 
 function Main() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
         <Route path="/" element={<Layout />}>
-          <Route path="" element={<App />} />
+          <Route path="" element={<Home />} />
           <Route path="/weather" element={<WeatherPage />} />
-          <Route path="/crypto" element={<Crypto />} />
+          <Route path="/crypto" element={<CryptoHome />} />
+          <Route path="/coin/:id" element={<CoinPage />} />
         </Route>
       </>
     )
@@ -30,7 +32,9 @@ function Main() {
 }
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Main />
-  </StrictMode>
+  <>
+    <CryptoContext>
+      <Main />
+    </CryptoContext>
+  </>
 );

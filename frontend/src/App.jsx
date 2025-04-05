@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Bell, TrendingUp, Menu, X } from "lucide-react";
+import { Link } from "react-router";
 
-//weather card 
+//weather card
 const WeatherCard = ({
   city,
   temperature,
@@ -10,7 +11,6 @@ const WeatherCard = ({
   showOnMobile = true,
   src,
 }) => {
-
   const mobileClass = showOnMobile ? "" : "hidden md:block";
 
   return (
@@ -30,7 +30,7 @@ const WeatherCard = ({
   );
 };
 
-//  Crypto Card 
+//  Crypto Card
 const CryptoCard = ({ name, price, trend, percentage }) => {
   const trendColor = trend === "up" ? "text-green-500" : "text-red-500";
   const percentageSign = trend === "up" ? "+" : "-";
@@ -85,7 +85,7 @@ const SidebarAlert = ({ icon, title, message }) => {
 // News Item Component
 const NewsItem = ({ headline }) => <li className="p-3 text-sm">{headline}</li>;
 
-export default function App() {
+export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Weather data
@@ -254,7 +254,7 @@ export default function App() {
           </div>
 
           {/* Crypto Section */}
-          <div className="col-span-1 mt-8 xl:mt-0">
+          <Link to="/crypto" className="col-span-1 bg-red-500 mt-8 xl:mt-0">
             <h2 className="text-xl mb-4">Crypto Overview</h2>
 
             {cryptoData.map((crypto, index) => (
@@ -275,7 +275,7 @@ export default function App() {
                 ))}
               </ul>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
