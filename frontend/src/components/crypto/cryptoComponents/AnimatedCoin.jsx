@@ -20,7 +20,7 @@ function AnimatedCoin() {
     const fetchTrendingCoins = async () => {
       setLoading(true);
       try {
-        // const { data } = await axios.get(TrendingCoins(currency));
+        const { data } = await axios.get(TrendingCoins(currency));
         setTrending(data);
         console.log("Fetched Trending Coins:", data);
       } catch (err) {

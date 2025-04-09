@@ -254,7 +254,7 @@ export default function Home() {
           </div>
 
           {/* Crypto Section */}
-          <Link to="/crypto" className="col-span-1 bg-red-500 mt-8 xl:mt-0">
+          <Link to="/crypto" className="col-span-1  mt-8 xl:mt-0">
             <h2 className="text-xl mb-4">Crypto Overview</h2>
 
             {cryptoData.map((crypto, index) => (

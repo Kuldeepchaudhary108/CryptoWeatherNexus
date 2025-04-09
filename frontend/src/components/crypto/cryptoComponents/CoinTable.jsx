@@ -17,6 +17,7 @@ import {
   Table,
   Paper,
 } from "@mui/material";
+import { Link } from "react-router";
 
 import axios from "axios";
 import { CoinList } from "../../../config/api";
@@ -53,15 +54,6 @@ export default function CoinsTable() {
 
   const classes = useStyles();
   //   const history = useHistory();
-
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
-    },
-  });
 
   const fetchCoins = async () => {
     setLoading(true);
@@ -134,41 +126,46 @@ export default function CoinsTable() {
                         className={classes.row}
                         key={row.name}
                       >
-                        <TableCell
-                          component="th"
-                          scope="row"
-                          style={{
-                            display: "flex",
-                            gap: 15,
-                            height: 80,
-                          }}
-                        >
-                          <img
-                            src={row?.image}
-                            alt={row.name}
-                            sx={{
-                              height: 35,
-                              width: 35,
-                              marginBottom: 1,
-                              objectFit: "contain",
+                        <Link to={`/coin/${row.id}`}>
+                          <TableCell
+                            component="th"
+                            scope="row"
+                            style={{
+                              display: "flex",
+                              gap: 15,
+                              height: 80,
                             }}
-                          />
-                          <div
-                            style={{ display: "flex", flexDirection: "column" }}
                           >
-                            <span
+                            <img
+                              src={row?.image}
+                              alt={row.name}
+                              sx={{
+                                height: 35,
+                                width: 35,
+                                marginBottom: 1,
+                                objectFit: "contain",
+                              }}
+                            />
+                            <div
                               style={{
-                                textTransform: "uppercase",
-                                fontSize: 22,
+                                display: "flex",
+                                flexDirection: "column",
                               }}
                             >
-                              {row.symbol}
-                            </span>
-                            <span style={{ color: "darkgrey" }}>
-                              {row.name}
-                            </span>
-                          </div>
-                        </TableCell>
+                              <span
+                                style={{
+                                  textTransform: "uppercase",
+                                  fontSize: 22,
+                                }}
+                              >
+                                {row.symbol}
+                              </span>
+                              <span style={{ color: "darkgrey" }}>
+                                {row.name}
+                              </span>
+                            </div>
+                          </TableCell>
+                        </Link>
                         <TableCell align="right">
                           {symbol}{" "}
                           {numberWithCommas(row.current_price.toFixed(2))}
