@@ -15,7 +15,7 @@ const WeatherCard = ({
 
   return (
     <div
-      className={`${mobileClass} bg-blue-500/60 rounded-lg overflow-hidden relative h-48`}
+      className={`${mobileClass} bg-blue-500/60 rounded-lg overflow-hidden relative h-48 hover:scale-105 hover:cursor-pointer `}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
       <img src={src} alt={city} className="w-full h-full object-cover" />
@@ -138,24 +138,6 @@ export default function Home() {
       showOnMobile: false,
       src: "london.jpg",
     },
-    {
-      city: "New York",
-      temperature: "80%",
-      condition: "Rainy",
-      subtext: "Market cap",
-      showOnMobile: false,
-      showOnLarge: true,
-      src: "new york.jpg",
-    },
-    {
-      city: "Noida",
-      temperature: "68%",
-      condition: "Cloudy",
-      subtext: "Partly cloudy",
-      showOnMobile: false,
-      showOnLarge: true,
-      src: "noida.jpg",
-    },
   ];
 
   // Crypto data
@@ -202,9 +184,17 @@ export default function Home() {
             <li className="bg-[#0E335A] p-3 rounded-lg font-medium">
               Dashboard
             </li>
-            <li className="p-3 text-gray-400">Weather</li>
-            <li className="p-3 text-gray-400">Crypto</li>
-            <li className="p-3 text-gray-400">News</li>
+            <li>
+              <Link to={"/weather"} className="p-3 text-gray-400">
+                Weather
+              </Link>
+            </li>
+            <li>
+              <Link to={"/crypto"} className="p-3 text-gray-400">
+                Crypto
+              </Link>
+            </li>
+            {/* <li className="p-3 text-gray-400">News</li> */}
           </ul>
         </nav>
 
@@ -238,7 +228,7 @@ export default function Home() {
           <div className="col-span-1">
             <h2 className="text-xl mb-4">Weather Overview</h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
               {weatherData.map((weather, index) => (
                 <WeatherCard
                   key={index}
@@ -254,28 +244,32 @@ export default function Home() {
           </div>
 
           {/* Crypto Section */}
-          <Link to="/crypto" className="col-span-1  mt-8 xl:mt-0">
-            <h2 className="text-xl mb-4">Crypto Overview</h2>
+          <div className="">
+            <Link to="/crypto" className="col-span-1  mt-8 xl:mt-0">
+              <h2 className="text-xl mb-4">Crypto Overview</h2>
 
-            {cryptoData.map((crypto, index) => (
-              <CryptoCard
-                key={index}
-                name={crypto.name}
-                price={crypto.price}
-                trend={crypto.trend}
-                percentage={crypto.percentage}
-              />
-            ))}
+              {cryptoData.map((crypto, index) => (
+                <CryptoCard
+                  key={index}
+                  name={crypto.name}
+                  price={crypto.price}
+                  trend={crypto.trend}
+                  percentage={crypto.percentage}
+                />
+              ))}
+            </Link>
 
-            <h2 className="text-xl mb-4">Latest Crypto News</h2>
-            <div className="bg-[#072749] rounded-lg overflow-hidden">
-              <ul className="divide-y divide-gray-700">
-                {newsData.map((news, index) => (
-                  <NewsItem key={index} headline={news} />
-                ))}
-              </ul>
-            </div>
-          </Link>
+            <Link>
+              <h2 className="text-xl mb-4">Latest Crypto News</h2>
+              <div className="bg-[#072749] rounded-lg overflow-hidden">
+                <ul className="divide-y divide-gray-700">
+                  {newsData.map((news, index) => (
+                    <NewsItem key={index} headline={news} />
+                  ))}
+                </ul>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
